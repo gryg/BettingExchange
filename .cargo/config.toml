@@ -1,0 +1,45 @@
+[package]
+name = "injective-betting"
+version = "0.1.0"
+authors = ["Your Name <you@example.com>"]
+edition = "2021"
+
+exclude = [
+  "contract.wasm",
+  "hash.txt",
+]
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[profile.release]
+opt-level = 3
+debug = false
+rpath = false
+lto = true
+debug-assertions = false
+codegen-units = 1
+panic = "abort"
+incremental = false
+overflow-checks = true
+
+[features]
+# for more explicit tests, cargo test --features=backtraces
+backtraces = ["cosmwasm-std/backtraces"]
+# use library feature to disable all instantiate/execute/query exports
+library = []
+
+[dependencies]
+cosmwasm-std = "1.5.0" # Or latest compatible version for Injective
+cosmwasm-storage = "1.5.0" # Or latest compatible version
+cw-storage-plus = "1.2.0" # Or latest compatible version
+schemars = "0.8.12"
+serde = { version = "1.0.188", default-features = false, features = ["derive"] }
+thiserror = { version = "1.0.47" }
+cw2 = "1.1.1" # For contract versioning
+
+# For Decimal256 if needed with Injective specific types, otherwise cosmwasm_std::Decimal is fine.
+# injective-cosmwasm = { version = "...", optional = true } # If using Injective specific types/modules
+
+[dev-dependencies]
+cw-multi-test = "0.16.5" # Or latest compatible
