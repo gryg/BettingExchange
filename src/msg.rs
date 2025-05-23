@@ -1,13 +1,14 @@
-use cosmwasm_std::{Addr, Coin, Decimal, Timestamp, Uint128};
+use cosmwasm_std::{Addr, Decimal, Timestamp, Uint128};
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
+use cosmwasm_schema::QueryResponses; // Added for QueryResponses
 
 use crate::state::{Event, MatchedBet, Order};
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct InstantiateMsg {
-    pub admin: Option<String>, // Contract administrator
-    pub betting_denom: String, // The denomination used for betting (e.g., "inj" or a sub-unit)
+    pub admin: Option<String>, 
+    pub betting_denom: String, 
 }
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
@@ -15,15 +16,15 @@ pub struct InstantiateMsg {
 pub enum ExecuteMsg {
     CreateEvent {
         description: String,
-        oracle_addr: Option<String>, // If None, defaults to sender
-        resolution_deadline: Option<Timestamp>, // Optional deadline for resolution
+        oracle_addr: Option<String>, 
+        resolution_deadline: Option<Timestamp>, 
     },
     PlaceOrder {
         event_id: u64,
         order_type: OrderType,
         outcome: Outcome,
-        stake: Uint128, // For Back: amount betting. For Lay: amount of liability willing to cover.
-        odds: Decimal,  // e.g., 2.5
+        stake: Uint128, 
+        odds: Decimal,  
     },
     CancelOrder {
         order_id: u64,
@@ -32,40 +33,43 @@ pub enum ExecuteMsg {
         event_id: u64,
         winning_outcome: Outcome,
     },
-    // Future: UpdateConfig { admin: Option<String>, betting_denom: Option<String> }
 }
 
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema, QueryResponses)] // Added QueryResponses
 #[serde(rename_all = "snake_case")]
 pub enum QueryMsg {
+    #[returns(ConfigResponse)]
     GetConfig {},
+    #[returns(EventResponse)]
     GetEvent {
         event_id: u64,
     },
+    #[returns(EventsResponse)]
     ListEvents {
-        start_after: Option<u64>, // Event ID to start after
+        start_after: Option<u64>, 
         limit: Option<u32>,
         filter_status: Option<EventStatus>,
     },
+    #[returns(OrderResponse)]
     GetOrder {
         order_id: u64,
     },
+    #[returns(OrdersResponse)]
     ListOrdersByEvent {
         event_id: u64,
-        start_after: Option<u64>, // Order ID to start after
+        start_after: Option<u64>, 
         limit: Option<u32>,
         filter_order_type: Option<OrderType>,
         filter_outcome: Option<Outcome>,
     },
+    #[returns(MatchedBetsResponse)]
     ListMatchedBetsByEvent {
         event_id: u64,
-        start_after: Option<u64>, // Bet ID to start after
+        start_after: Option<u64>, 
         limit: Option<u32>,
     },
-    // Query user's open orders, matched bets etc. could be added
 }
 
-// Responses
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct ConfigResponse {
     pub admin: Addr,
@@ -105,8 +109,6 @@ pub struct MatchedBetsResponse {
     pub matched_bets: Vec<MatchedBet>,
 }
 
-
-// Shared Enums and Structs
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, Eq, JsonSchema, Copy)]
 pub enum Outcome {
     Yes,
@@ -115,21 +117,21 @@ pub enum Outcome {
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, Eq, JsonSchema, Copy)]
 pub enum EventStatus {
-    Open,      // Accepting bets
-    Resolved,  // Outcome declared, bets settled or being settled
-    Cancelled, // Event cancelled, funds returned (Future improvement)
+    Open,      
+    Resolved,  
+    Cancelled, 
 }
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, Eq, JsonSchema, Copy)]
 pub enum OrderType {
-    Back, // Betting that an outcome WILL happen
-    Lay,  // Betting that an outcome WILL NOT happen (acting as bookie for that specific outcome)
+    Back, 
+    Lay,  
 }
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, Eq, JsonSchema, Copy)]
 pub enum OrderStatus {
-    Open,            // Available for matching
-    PartiallyFilled, // Partially matched
-    Filled,          // Fully matched
-    Cancelled,       // Cancelled by user
+    Open,            
+    PartiallyFilled, 
+    Filled,          
+    Cancelled,       
 }
