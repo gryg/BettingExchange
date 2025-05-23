@@ -1,0 +1,1070 @@
+# .env.local
+NEXT_PUBLIC_INJECTIVE_CHAIN_ID="injective-888" 
+NEXT_PUBLIC_CONTRACT_ADDRESS="inj1ym76pag6qww5kpttsczpf280qj4kqcesf5k25s" 
+# NEXT_PUBLIC_RPC_ENDPOINT="https://testnet.sentry.tm.injective.network:443"
+# NEXT_PUBLIC_REST_ENDPOINT="from_sdk_or_docs"
+
+# .gitignore
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+
+# eslint.config.mjs
+import { dirname } from "path";
+import { fileURLToPath } from "url";
+import { FlatCompat } from "@eslint/eslintrc";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const compat = new FlatCompat({
+  baseDirectory: __dirname,
+});
+
+const eslintConfig = [
+  ...compat.extends("next/core-web-vitals", "next/typescript"),
+];
+
+export default eslintConfig;
+
+
+# next-env.d.ts
+/// <reference types="next" />
+/// <reference types="next/image-types/global" />
+
+// NOTE: This file should not be edited
+// see https://nextjs.org/docs/app/api-reference/config/typescript for more information.
+
+
+# next.config.ts
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
+  /* config options here */
+};
+
+export default nextConfig;
+
+
+# package.json
+{
+  "name": "ui",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@injectivelabs/networks": "^1.15.16",
+    "@injectivelabs/sdk-ts": "^1.15.18",
+    "@injectivelabs/utils": "^1.15.16",
+    "@injectivelabs/wallet-ts": "^1.14.41",
+    "@keplr-wallet/types": "^0.12.235",
+    "ethers": "^6.14.1",
+    "next": "15.1.8",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.1.8",
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
+  }
+}
+
+
+# postcss.config.mjs
+/** @type {import('postcss-load-config').Config} */
+const config = {
+  plugins: {
+    tailwindcss: {},
+  },
+};
+
+export default config;
+
+
+# README.md
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+
+## Getting Started
+
+First, run the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+
+# tailwind.config.ts
+import type { Config } from "tailwindcss";
+
+export default {
+  content: [
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        background: "var(--background)",
+        foreground: "var(--foreground)",
+      },
+    },
+  },
+  plugins: [],
+} satisfies Config;
+
+
+# tsconfig.json
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
+}
+
+
+# src/app/globals.css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+# src/app/layout.tsx
+// src/app/layout.tsx
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css"; // Ensure Tailwind is set up here
+import { WalletProvider } from "./contexts/WalletContext"; // Adjust path if needed
+
+const inter = Inter({ subsets: ["latin"] });
+
+export const metadata: Metadata = {
+  title: "Injective Betting Exchange",
+  description: "A decentralized betting exchange on Injective",
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <body className={inter.className}>
+        <WalletProvider>
+          {children}
+        </WalletProvider>
+      </body>
+    </html>
+  );
+}
+
+# src/app/page.tsx
+// src/app/page.tsx
+"use client";
+
+import React, { useEffect, useState } from 'react';
+import ConnectWalletButton from './components/ConnectWalletButton'; // Create this
+import CreateEventForm from './components/CreateEventForm'; // Create this
+import EventList from './components/EventList'; // Create this
+import { useWallet } from './contexts/WalletContext'; // Adjust path
+import { queryListEvents } from '../lib/contractInteractions'; // Adjust path
+import { Event as ContractEvent } from '../lib/types'; // Use your defined types
+
+export default function HomePage() {
+    const { injectiveAddress, signer, isWalletConnected } = useWallet();
+    const [events, setEvents] = useState<ContractEvent[]>([]);
+    const [isLoadingEvents, setIsLoadingEvents] = useState(false);
+
+    const fetchEvents = async () => {
+        setIsLoadingEvents(true);
+        try {
+            const result = await queryListEvents();
+            if (result && result.events) {
+                setEvents(result.events);
+            } else {
+                setEvents([]);
+            }
+        } catch (error) {
+            console.error("Failed to fetch events:", error);
+            setEvents([]); // Clear events on error
+        }
+        setIsLoadingEvents(false);
+    };
+
+    useEffect(() => {
+        fetchEvents();
+    }, []); // Fetch on mount
+
+    return (
+        <main className="flex min-h-screen flex-col items-center justify-start p-8 sm:p-12 md:p-24 bg-gray-900 text-white">
+            <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex mb-8">
+                <h1 className="text-4xl font-bold mb-4 text-center lg:text-left">Injective Betting Exchange</h1>
+                <ConnectWalletButton />
+            </div>
+
+            {isWalletConnected && (
+                <div className="mb-8 w-full max-w-2xl p-4 bg-gray-800 rounded-lg">
+                    <p className="text-sm">Connected: <span className="font-semibold">{injectiveAddress}</span></p>
+                </div>
+            )}
+
+            <div className="w-full max-w-2xl mb-12">
+                <CreateEventForm
+                    injectiveAddress={injectiveAddress}
+                    signer={signer}
+                    isWalletConnected={isWalletConnected}
+                    onEventCreated={fetchEvents} // Refresh list after creation
+                />
+            </div>
+            
+            <div className="w-full max-w-2xl">
+                <h2 className="text-2xl font-semibold mb-4">Current Events</h2>
+                {isLoadingEvents ? <p>Loading events...</p> : <EventList events={events} />}
+            </div>
+        </main>
+    );
+}
+
+# src/app/components/ConnectWalletButton.tsx
+"use client"; // For Next.js App Router client components
+
+import React from 'react';
+import { useWallet } from '../contexts/WalletContext'; // Adjust path if your contexts folder is elsewhere
+
+const ConnectWalletButton: React.FC = () => {
+    const { injectiveAddress, connectWallet, disconnectWallet, isWalletConnected } = useWallet();
+
+    if (isWalletConnected) {
+        return (
+            <div className="flex flex-col items-center space-y-2 md:flex-row md:space-y-0 md:space-x-4">
+                <p className="text-sm text-green-400">
+                    Connected: 
+                    <span className="font-mono ml-2 bg-gray-700 px-2 py-1 rounded">
+                        {injectiveAddress.substring(0, 9)}...{injectiveAddress.substring(injectiveAddress.length - 4)}
+                    </span>
+                </p>
+                <button 
+                    onClick={disconnectWallet}
+                    className="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 focus:ring-offset-gray-900"
+                >
+                    Disconnect Wallet
+                </button>
+            </div>
+        );
+    }
+
+    return (
+        <button 
+            onClick={connectWallet}
+            className="px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 focus:ring-offset-gray-900"
+        >
+            Connect Keplr Wallet
+        </button>
+    );
+};
+
+export default ConnectWalletButton;
+
+# src/app/components/CreateEventForm.tsx
+"use client";
+import React, { useState } from 'react';
+import { executeCreateEvent, ExecuteCreateEventParams } from '../../lib/contractInteractions'; // Adjust path
+import { OfflineAminoSigner, OfflineDirectSigner } from '@cosmjs/launchpad';
+
+interface CreateEventFormProps {
+    injectiveAddress: string;
+    signer: OfflineAminoSigner | OfflineDirectSigner | undefined;
+    isWalletConnected: boolean;
+    onEventCreated: () => void; // Callback to refresh event list
+}
+
+const CreateEventForm: React.FC<CreateEventFormProps> = ({ injectiveAddress, signer, isWalletConnected, onEventCreated }) => {
+    const [description, setDescription] = useState('');
+    const [oracleAddr, setOracleAddr] = useState(''); // Optional
+    const [deadline, setDeadline] = useState(''); // String for simplicity, convert to timestamp
+    const [isLoading, setIsLoading] = useState(false);
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!isWalletConnected || !signer || !injectiveAddress) {
+            alert('Please connect your wallet first.');
+            return;
+        }
+        if (!description.trim()) {
+            alert('Description cannot be empty.');
+            return;
+        }
+
+        setIsLoading(true);
+        try {
+            const params: ExecuteCreateEventParams = { description };
+            if (oracleAddr.trim()) params.oracleAddr = oracleAddr.trim();
+            if (deadline.trim()) {
+                // Basic conversion, add more robust date/time picker and parsing
+                const deadlineDate = new Date(deadline);
+                params.resolutionDeadline = Math.floor(deadlineDate.getTime() / 1000).toString();
+            }
+
+            await executeCreateEvent(injectiveAddress, signer, params);
+            alert('Event creation transaction sent!');
+            setDescription('');
+            setOracleAddr('');
+            setDeadline('');
+            onEventCreated(); // Refresh the list
+        } catch (error) {
+            // Error already alerted in executeCreateEvent, could add more specific UI feedback
+            console.error('Failed to create event:', error);
+        }
+        setIsLoading(false);
+    };
+
+    return (
+        <form onSubmit={handleSubmit} className="space-y-4 p-6 bg-gray-800 rounded-lg shadow-md">
+            <h2 className="text-xl font-semibold text-white mb-4">Create New Event</h2>
+            <div>
+                <label htmlFor="description" className="block text-sm font-medium text-gray-300">Description:</label>
+                <input
+                    type="text"
+                    id="description"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                    required
+                    className="mt-1 block w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-white"
+                />
+            </div>
+            <div>
+                <label htmlFor="oracleAddr" className="block text-sm font-medium text-gray-300">Oracle Address (Optional):</label>
+                <input
+                    type="text"
+                    id="oracleAddr"
+                    value={oracleAddr}
+                    onChange={(e) => setOracleAddr(e.target.value)}
+                    className="mt-1 block w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-white"
+                    placeholder="inj..."
+                />
+            </div>
+            <div>
+                <label htmlFor="deadline" className="block text-sm font-medium text-gray-300">Resolution Deadline (Optional, e.g., YYYY-MM-DDTHH:MM):</label>
+                <input
+                    type="datetime-local" // For easier date-time input
+                    id="deadline"
+                    value={deadline}
+                    onChange={(e) => setDeadline(e.target.value)}
+                    className="mt-1 block w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-white"
+                />
+            </div>
+            <button
+                type="submit"
+                disabled={!isWalletConnected || isLoading}
+                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50"
+            >
+                {isLoading ? 'Creating...' : 'Create Event'}
+            </button>
+        </form>
+    );
+};
+
+export default CreateEventForm;
+
+# src/app/components/EventList.tsx
+// src/components/EventList.tsx
+import React from 'react';
+import { Event as ContractEvent } from '../../lib/types'; // Your Event type
+
+interface EventListProps {
+    events: ContractEvent[];
+}
+
+const EventList: React.FC<EventListProps> = ({ events }) => {
+    if (!events || events.length === 0) {
+        return <p className="text-gray-400">No events found.</p>;
+    }
+
+    return (
+        <ul className="space-y-4">
+            {events.map((event) => (
+                <li key={event.id} className="p-4 bg-gray-800 rounded-lg shadow">
+                    <h3 className="text-xl font-semibold text-indigo-400">Event ID: {event.id}</h3>
+                    <p className="text-gray-300">{event.description}</p>
+                    <p className="text-sm text-gray-500">Oracle: {event.oracle}</p>
+                    <p className="text-sm text-gray-500">Status: {event.status}</p>
+                    {/* Add more details, buttons to place bets, etc. */}
+                </li>
+            ))}
+        </ul>
+    );
+};
+
+export default EventList;
+
+# src/app/components/PlaceOrderForm.tsx
+"use client";
+
+import React, { useState } from 'react';
+import { useWallet } from '../app/contexts/WalletContext'; // Adjust path
+import { executePlaceOrder, ExecutePlaceOrderParams } from '../lib/contractInteractions'; // Adjust path
+import { OrderType, Outcome, Coin as ContractCoin } from '../lib/types'; // Adjust path
+import { BETTING_DENOM } from '../lib/config'; // Assuming you might create a config.ts for constants like BETTING_DENOM
+
+interface PlaceOrderFormProps {
+    eventId: string; // The event ID to place an order on
+    onOrderPlaced: () => void; // Callback to refresh data after placing an order
+}
+
+const PlaceOrderForm: React.FC<PlaceOrderFormProps> = ({ eventId, onOrderPlaced }) => {
+    const { injectiveAddress, signer, isWalletConnected } = useWallet();
+    
+    const [orderType, setOrderType] = useState<OrderType>(OrderType.Back);
+    const [outcome, setOutcome] = useState<Outcome>(Outcome.Yes);
+    const [stake, setStake] = useState(''); // User inputs stake as string
+    const [odds, setOdds] = useState('');   // User inputs odds as string (e.g., "2.5")
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+
+    const calculateLiability = (): string => {
+        if (orderType === OrderType.Lay && parseFloat(odds) > 1 && parseFloat(stake) > 0) {
+            const liability = (parseFloat(odds) - 1) * parseFloat(stake);
+            return liability.toFixed(6); // Adjust precision as needed
+        }
+        return stake; // For Back orders, deposit is the stake itself
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setError(null);
+        if (!isWalletConnected || !signer || !injectiveAddress) {
+            setError('Please connect your wallet.');
+            return;
+        }
+        if (!eventId || !stake.trim() || !odds.trim() || parseFloat(odds) <= 1) {
+            setError('Please fill in all fields correctly. Odds must be > 1.');
+            return;
+        }
+
+        setIsLoading(true);
+
+        const params: ExecutePlaceOrderParams = {
+            eventId,
+            orderType,
+            outcome,
+            stake, // Assuming your contract expects stake as string (Uint128)
+            odds,  // Assuming your contract expects odds as string (Decimal)
+        };
+
+        // Determine funds to send
+        let amountToSend = '';
+        if (orderType === OrderType.Back) {
+            amountToSend = stake;
+        } else { // OrderType.Lay
+            // Liability calculation: (odds - 1) * stake
+            // This needs to be precise. Using string manipulation for decimals can be error-prone.
+            // For production, use a robust decimal math library if not handled by SDK/contract perfectly by string.
+            // Here, a simplified calculation is shown.
+            const oddsVal = parseFloat(odds);
+            const stakeVal = parseFloat(stake);
+            if (oddsVal > 1 && stakeVal > 0) {
+                amountToSend = ((oddsVal - 1) * stakeVal).toString();
+            } else {
+                setError("Invalid odds or stake for lay bet liability calculation.");
+                setIsLoading(false);
+                return;
+            }
+        }
+        
+        const funds: ContractCoin[] = [{ denom: BETTING_DENOM, amount: amountToSend }];
+
+        try {
+            await executePlaceOrder(injectiveAddress, signer, params, funds);
+            setStake('');
+            setOdds('');
+            onOrderPlaced(); // Callback to refresh relevant data
+        } catch (err) {
+            // Error is usually handled/alerted in executePlaceOrder,
+            // but you can set local error state too.
+            setError(err instanceof Error ? err.message : "Transaction failed");
+        }
+        setIsLoading(false);
+    };
+
+    return (
+        <form onSubmit={handleSubmit} className="space-y-4 p-6 bg-gray-700 rounded-lg shadow-md mt-6">
+            <h3 className="text-lg font-semibold text-white">Place Your Bet for Event ID: {eventId}</h3>
+            {error && <p className="text-red-400 bg-red-900 p-2 rounded">{error}</p>}
+            <div>
+                <label htmlFor="orderType" className="block text-sm font-medium text-gray-300">Bet Type:</label>
+                <select
+                    id="orderType"
+                    value={orderType}
+                    onChange={(e) => setOrderType(e.target.value as OrderType)}
+                    className="mt-1 block w-full px-3 py-2 bg-gray-600 border border-gray-500 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-white"
+                >
+                    <option value={OrderType.Back}>Back (Bet For)</option>
+                    <option value={OrderType.Lay}>Lay (Bet Against)</option>
+                </select>
+            </div>
+            <div>
+                <label htmlFor="outcome" className="block text-sm font-medium text-gray-300">Outcome:</label>
+                <select
+                    id="outcome"
+                    value={outcome}
+                    onChange={(e) => setOutcome(e.target.value as Outcome)}
+                    className="mt-1 block w-full px-3 py-2 bg-gray-600 border border-gray-500 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-white"
+                >
+                    <option value={Outcome.Yes}>Yes</option>
+                    <option value={Outcome.No}>No</option>
+                </select>
+            </div>
+            <div>
+                <label htmlFor="stake" className="block text-sm font-medium text-gray-300">
+                    {orderType === OrderType.Back ? "Your Stake:" : "Backer's Stake to Match:"}
+                </label>
+                <input
+                    type="number"
+                    id="stake"
+                    value={stake}
+                    onChange={(e) => setStake(e.target.value)}
+                    placeholder="e.g., 100"
+                    required
+                    min="0.000001" // Example min value
+                    step="any"
+                    className="mt-1 block w-full px-3 py-2 bg-gray-600 border border-gray-500 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-white"
+                />
+            </div>
+            <div>
+                <label htmlFor="odds" className="block text-sm font-medium text-gray-300">Odds:</label>
+                <input
+                    type="number"
+                    id="odds"
+                    value={odds}
+                    onChange={(e) => setOdds(e.target.value)}
+                    placeholder="e.g., 2.5 (must be > 1.0)"
+                    required
+                    min="1.000001" // Odds must be greater than 1
+                    step="any"
+                    className="mt-1 block w-full px-3 py-2 bg-gray-600 border border-gray-500 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-white"
+                />
+            </div>
+            {orderType === OrderType.Lay && parseFloat(odds) > 1 && parseFloat(stake) > 0 && (
+                <p className="text-sm text-gray-400">
+                    Your potential liability (amount to deposit): {calculateLiability()} {BETTING_DENOM}
+                </p>
+            )}
+             {orderType === OrderType.Back && parseFloat(stake) > 0 && (
+                <p className="text-sm text-gray-400">
+                    Amount to deposit: {stake} {BETTING_DENOM}
+                </p>
+            )}
+            <button
+                type="submit"
+                disabled={!isWalletConnected || isLoading}
+                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:opacity-50"
+            >
+                {isLoading ? 'Placing Order...' : 'Place Order'}
+            </button>
+        </form>
+    );
+};
+
+export default PlaceOrderForm;
+
+
+# src/app/contexts/WalletContext.tsx
+"use client"; 
+
+import React, { createContext, useState, useContext, ReactNode, useCallback } from 'react';
+import { ChainId, AccountAddress } from '@injectivelabs/ts-types';
+// getKeplr and KeplrWallet might not be direct exports anymore or are used differently
+// We will interact with window.keplr directly or via WalletStrategy patterns
+import { OfflineAminoSigner, OfflineDirectSigner, Keplr } from '@keplr-wallet/types'; // More specific Keplr types
+import { InjectiveChainId } from '@injectivelabs/networks';
+
+interface WalletContextState {
+    address: AccountAddress | undefined; // This is often the base bech32 address
+    injectiveAddress: string; // Specifically the 'inj' prefixed address
+    signer: OfflineAminoSigner | OfflineDirectSigner | undefined;
+    connectWallet: () => Promise<void>;
+    disconnectWallet: () => void;
+    isWalletConnected: boolean;
+    chainId: ChainId;
+}
+
+const WalletContext = createContext<WalletContextState | undefined>(undefined);
+
+export const WalletProvider = ({ children }: { children: ReactNode }) => {
+    const [address, setAddress] = useState<AccountAddress | undefined>(undefined);
+    const [injectiveAddress, setInjectiveAddress] = useState<string>('');
+    const [signer, setSigner] = useState<OfflineAminoSigner | OfflineDirectSigner | undefined>(undefined);
+    const [isWalletConnected, setIsWalletConnected] = useState<boolean>(false);
+
+    const chainId = (process.env.NEXT_PUBLIC_INJECTIVE_CHAIN_ID as ChainId) || InjectiveChainId.Testnet;
+
+    const connectWallet = useCallback(async () => {
+        try {
+            // Access Keplr directly from the window object
+            const keplr = (window as any).keplr as Keplr; // Cast to Keplr type
+            if (!keplr) {
+                alert("Please install Keplr extension.");
+                return;
+            }
+
+            await keplr.enable(chainId);
+            const offlineSigner = keplr.getOfflineSigner(chainId);
+            const accounts = await offlineSigner.getAccounts();
+
+            if (accounts.length > 0) {
+                // accounts[0].address is usually the one for the chain specified
+                // For Injective, Keplr should provide the 'inj' prefixed address here
+                setInjectiveAddress(accounts[0].address); 
+                setAddress(accounts[0].address); // You can set both if they are the same, or handle differently if needed
+
+                setSigner(offlineSigner);
+                setIsWalletConnected(true);
+            } else {
+                alert("No accounts found in Keplr or permission denied.");
+            }
+        } catch (error) {
+            console.error("Error connecting to Keplr:", error);
+            alert(`Error connecting wallet: ${error instanceof Error ? error.message : String(error)}`);
+        }
+    }, [chainId]);
+
+    const disconnectWallet = useCallback(() => {
+        setAddress(undefined);
+        setInjectiveAddress('');
+        setSigner(undefined);
+        setIsWalletConnected(false);
+    }, []);
+
+    return (
+        <WalletContext.Provider value={{ address, injectiveAddress, signer, connectWallet, disconnectWallet, isWalletConnected, chainId }}>
+            {children}
+        </WalletContext.Provider>
+    );
+};
+
+export const useWallet = () => {
+    const context = useContext(WalletContext);
+    if (!context) {
+        throw new Error('useWallet must be used within a WalletProvider');
+    }
+    return context;
+};
+
+# src/lib/config.ts
+export const BETTING_DENOM = process.env.NEXT_PUBLIC_BETTING_DENOM || "inj"; // Default or from env
+
+# src/lib/contractInteractions.ts
+
+import {
+    MsgExecuteContractCompat, // Use Compat for broader wallet support if needed
+    MsgBroadcasterWithPk, // If using private key directly (for scripts, NOT frontend)
+    
+} from '@injectivelabs/sdk-ts';
+import {
+    MsgBroadcaster, // Use this for frontend with Keplr
+    Wallet,
+    WalletStrategy, // For configuring MsgBroadcaster
+} from '@injectivelabs/wallet-ts';
+
+import { chainGrpcWasmApi, contractAddress, chainId, endpoints, injectiveNetwork } from './network';
+import { fromBase64, toBase64 } from '@injectivelabs/utils';
+import { EventsResponse, CreateEventParams } from './types'; // Assuming CreateEventParams is defined in types.ts
+import { OfflineAminoSigner, OfflineDirectSigner } from '@cosmjs/launchpad';
+import { BigNumberInBase } from '@injectivelabs/utils';
+
+
+// --- QUERY FUNCTIONS ---
+export const queryListEvents = async (
+    // Optional params like start_after, limit, filter_status
+    startAfter?: string,
+    limit?: number
+): Promise<EventsResponse | null> => {
+    try {
+        const query = { list_events: { start_after: startAfter, limit } };
+        const response = await chainGrpcWasmApi.fetchSmartContractState(
+            contractAddress,
+            toBase64(query) // Helper for Buffer.from(JSON.stringify(query)).toString('base64')
+        );
+        if (response.data) {
+            // The data is base64 encoded JSON string
+            const decoded = JSON.parse(Buffer.from(response.data).toString('utf-8'));
+            return decoded as EventsResponse;
+        }
+    } catch (e) {
+        console.error("Error querying list_events:", e);
+    }
+    return null;
+};
+
+// --- EXECUTE FUNCTIONS ---
+// Define your execute message parameter types (e.g., for CreateEvent)
+export interface ExecuteCreateEventParams {
+    description: string;
+    oracleAddr?: string;
+    resolutionDeadline?: string; // String representation of timestamp (seconds)
+}
+
+export const executeCreateEvent = async (
+    injectiveAddress: string, // User's Injective address ('inj...')
+    signer: OfflineAminoSigner | OfflineDirectSigner,
+    params: ExecuteCreateEventParams
+) => {
+    if (!contractAddress) throw new Error("Contract address not configured");
+
+    const msg = MsgExecuteContractCompat.fromJSON({
+        contractAddress: contractAddress,
+        sender: injectiveAddress,
+        msg: {
+            create_event: {
+                description: params.description,
+                oracle_addr: params.oracleAddr,
+                resolution_deadline: params.resolutionDeadline,
+            },
+        },
+        // funds: ... if your message sends funds
+    });
+
+    // Prepare and broadcast the transaction
+    // The MsgBroadcaster setup might vary slightly based on exact SDK versions and wallet integration
+    const msgBroadcaster = new MsgBroadcaster({
+        walletStrategy: new WalletStrategy({ 
+            chainId: chainId,
+            offlineSigner: signer, // This is key
+            // You might need to provide gas settings here or in the broadcast method
+        }),
+        network: injectiveNetwork, // from lib/network.ts
+    });
+
+    try {
+        const txResponse = await msgBroadcaster.broadcast({
+            address: injectiveAddress, // Address to broadcast from
+            msgs: msg,
+            // gas: { gas: "200000", gasPrice: "500000000inj" } // Example gas, adjust
+        });
+         console.log('Create Event Tx Response:', txResponse);
+        if (txResponse.code !== 0) {
+            throw new Error(`Transaction failed: ${txResponse.rawLog || txResponse.txHash}`);
+        }
+        alert(`Event created! TxHash: ${txResponse.txHash}`);
+        return txResponse;
+    } catch (e) {
+        console.error("Error executing create_event:", e);
+        alert(`Error: ${e instanceof Error ? e.message : String(e)}`);
+        throw e;
+    }
+};
+
+
+export const executePlaceOrder = async (
+    injectiveAddress: string,
+    signer: OfflineAminoSigner | OfflineDirectSigner,
+    params: ExecutePlaceOrderParams,
+    funds?: ContractCoin[] // Optional funds to send with the transaction
+) => {
+    if (!contractAddress) throw new Error("Contract address not configured");
+    if (!injectiveAddress || !signer) throw new Error("Wallet not connected");
+
+    // Construct the message for placing an order
+    const msg = MsgExecuteContractCompat.fromJSON({
+        contractAddress: contractAddress,
+        sender: injectiveAddress,
+        msg: {
+            place_order: {
+                event_id: params.eventId,
+                order_type: params.orderType,
+                outcome: params.outcome,
+                stake: params.stake, // Assuming stake is already a string representation of Uint128
+                odds: params.odds,   // Assuming odds is already a string representation of Decimal
+            },
+        },
+        funds: funds?.map(coin => ({ // Convert your Coin type to the SDK's Coin type if different
+            denom: coin.denom,
+            amount: new BigNumberInBase(coin.amount).toWei().toFixed(), // Ensure correct amount formatting for SDK
+        })),
+    });
+
+    const msgBroadcaster = new MsgBroadcaster({
+        walletStrategy: new WalletStrategy({
+            chainId: chainId,
+            offlineSigner: signer,
+            // You might need to configure gas explicitly here or during broadcast
+            // gasLimit: DEFAULT_GAS_LIMIT, (example)
+            // feePrice: DEFAULT_MAINNET_GAS_PRICE, (example)
+        }),
+        network: injectiveNetwork,
+        // endpoints: endpoints, // Usually derived from network or walletStrategy
+    });
+
+    try {
+        const txResponse = await msgBroadcaster.broadcast({
+            address: injectiveAddress,
+            msgs: msg,
+            // memo: "Placing a bet", // Optional
+            // gas: { gas: "300000", ... } // Adjust gas as needed
+        });
+        console.log('Place Order Tx Response:', txResponse);
+        if (txResponse.code !== 0) { // Check for successful transaction execution
+            throw new Error(`Transaction failed: ${txResponse.rawLog || txResponse.txHash}`);
+        }
+        alert(`Order placement transaction sent! TxHash: ${txResponse.txHash}`);
+        return txResponse;
+    } catch (e) {
+        console.error("Error executing place_order:", e);
+        alert(`Order Placement Error: ${e instanceof Error ? e.message : String(e)}`);
+        throw e;
+    }
+};
+
+# src/lib/network.ts
+import {
+    ChainGrpcWasmApi,
+    ChainRestAuthApi,
+    ChainRestTendermintApi,
+} from '@injectivelabs/sdk-ts';
+import { getNetworkEndpoints, Network, InjectiveNetwork } from '@injectivelabs/networks'; // Use InjectiveNetwork
+import { ChainId } from '@injectivelabs/ts-types';
+
+export const IS_TESTNET = process.env.NEXT_PUBLIC_NETWORK_NAME === 'testnet'; // Add NEXT_PUBLIC_NETWORK_NAME to .env.local if you want to switch
+export const injectiveNetwork = IS_TESTNET ? Network.TestnetK8s : Network.MainnetK8s; // Or Network.Testnet for older testnet
+
+export const endpoints = getNetworkEndpoints(injectiveNetwork);
+
+export const chainGrpcWasmApi = new ChainGrpcWasmApi(endpoints.grpc);
+export const chainRestAuthApi = new ChainRestAuthApi(endpoints.rest);
+export const chainRestTendermintApi = new ChainRestTendermintApi(endpoints.rest);
+
+export const contractAddress = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS!;
+export const chainId = process.env.NEXT_PUBLIC_INJECTIVE_CHAIN_ID as ChainId;
+
+if (!contractAddress) {
+    console.warn("NEXT_PUBLIC_CONTRACT_ADDRESS is not set. Interactions will fail.");
+}
+if (!chainId) {
+    console.warn("NEXT_PUBLIC_INJECTIVE_CHAIN_ID is not set. Wallet interactions might fail.");
+}
+
+# src/lib/types.ts
+
+// --- Enums (mirroring Rust enums) ---
+export enum Outcome { Yes = "Yes", No = "No" }
+export enum EventStatus { Open = "Open", Resolved = "Resolved", Cancelled = "Cancelled" }
+export enum OrderType { Back = "Back", Lay = "Lay" }
+export enum OrderStatus { Open = "Open", PartiallyFilled = "PartiallyFilled", Filled = "Filled", Cancelled = "Cancelled" }
+
+// --- Basic Types ---
+export interface Coin {
+    denom: string;
+    amount: string; // u128 is typically represented as a string in JSON
+}
+
+// --- State Structs (mirroring Rust state.rs structs) ---
+export interface Config {
+    admin: string; // Addr
+    betting_denom: string;
+}
+
+export interface Event {
+    id: string; // u64
+    creator: string; // Addr
+    description: string;
+    oracle: string; // Addr
+    status: EventStatus;
+    winning_outcome?: Outcome | null; // Option<Outcome>
+    resolution_deadline?: string | null; // Option<Timestamp> (u64 seconds)
+    creation_time: string; // Timestamp (u64 seconds)
+}
+
+export interface Order {
+    id: string; // u64
+    event_id: string; // u64
+    owner: string; // Addr
+    order_type: OrderType;
+    outcome: Outcome;
+    initial_backer_stake: Coin;
+    remaining_backer_stake: Coin;
+    odds: string; // Decimal as string
+    creation_time: string; // Timestamp (u64 seconds)
+    status: OrderStatus;
+}
+
+export interface MatchedBet {
+    id: string; // u64
+    event_id: string; // u64
+    backer_addr: string; // Addr
+    lay_addr: string; // Addr
+    backer_stake: Coin;
+    layer_liability: Coin;
+    outcome_backed: Outcome;
+    odds: string; // Decimal as string
+    creation_time: string; // Timestamp (u64 seconds)
+}
+
+// --- Query Message Response Types (mirroring Rust msg.rs response structs) ---
+export interface ConfigResponse extends Config {
+    next_event_id: string; // u64
+    next_order_id: string; // u64
+    next_bet_id: string; // u64
+}
+
+export interface EventResponse {
+    event: Event;
+}
+
+export interface EventsResponse {
+    events: Event[];
+}
+
+export interface OrderResponse {
+    order: Order;
+}
+
+export interface OrdersResponse {
+    orders: Order[];
+}
+
+export interface MatchedBetsResponse {
+    matched_bets: MatchedBet[];
+}
+
+// --- Execute Message Parameter Types (for frontend forms) ---
+export interface ExecuteCreateEventParams {
+    description: string;
+    oracleAddr?: string;         // Corresponds to oracle_addr: Option<String>
+    resolutionDeadline?: string; // Corresponds to resolution_deadline: Option<Timestamp> (string of u64 seconds)
+}
+
+export interface ExecutePlaceOrderParams {
+    eventId: string;    // u64
+    orderType: OrderType;
+    outcome: Outcome;
+    stake: string;      // Uint128 as string
+    odds: string;       // Decimal as string
+}
+
+export interface ExecuteCancelOrderParams {
+    orderId: string;    // u64
+}
+
+export interface ExecuteResolveEventParams {
+    eventId: string;    // u64
+    winningOutcome: Outcome;
+}
+

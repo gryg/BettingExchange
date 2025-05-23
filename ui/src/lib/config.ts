@@ -1,0 +1,1 @@
+export const BETTING_DENOM = process.env.NEXT_PUBLIC_BETTING_DENOM || "inj"; // Default or from env
